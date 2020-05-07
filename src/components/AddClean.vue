@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    
+    新增清洗记录
   </div>
 </template>
 
 <script>
 export default {
-  name: '',
+  name: 'AddClean',
   props: {
   }
 }

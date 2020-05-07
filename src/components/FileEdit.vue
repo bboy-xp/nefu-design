@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    
+    档案修改
   </div>
 </template>
 
 <script>
 export default {
-  name: '',
+  name: 'FileEdit',
   props: {
   }
 }

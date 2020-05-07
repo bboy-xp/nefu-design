@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    
+    档案查询
   </div>
 </template>
 
 <script>
 export default {
-  name: '',
+  name: 'FileSearch',
   props: {
   }
 }

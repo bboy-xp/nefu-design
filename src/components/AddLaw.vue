@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    
+    新增执法记录
   </div>
 </template>
 
 <script>
 export default {
-  name: '',
+  name: 'AddLaw',
   props: {
   }
 }

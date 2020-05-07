@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    
+    新增环保设施
   </div>
 </template>
 
 <script>
 export default {
-  name: '',
+  name: 'AddData',
   props: {
   }
 }

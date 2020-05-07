@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    
+    档案添加
   </div>
 </template>
 
 <script>
 export default {
-  name: '',
+  name: 'AddFile',
   props: {
   }
 }

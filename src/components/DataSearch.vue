@@ -1,12 +1,13 @@
 <template>
   <div class="container">
+    历史数据查询
     
   </div>
 </template>
 
 <script>
 export default {
-  name: '',
+  name: 'DataSearch',
   props: {
   }
 }

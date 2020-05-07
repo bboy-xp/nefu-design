@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    
+    异常申报
   </div>
 </template>
 
 <script>
 export default {
-  name: '',
+  name: 'ErrorReport',
   props: {
   }
 }
