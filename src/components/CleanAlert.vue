@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    添加环保设施
+    待清洗设备提醒
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AddData',
+  name: 'CleanAlert',
   props: {
   }
 }

@@ -1,13 +1,12 @@
 <template>
   <div class="container">
-    历史数据查询
-    
+    异常报警提醒
   </div>
 </template>
 
 <script>
 export default {
-  name: 'DataSearch',
+  name: 'ErrorAlert',
   props: {
   }
 }

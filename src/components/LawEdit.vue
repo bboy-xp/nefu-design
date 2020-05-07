@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    添加环保设施
+    修改执法记录
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AddData',
+  name: 'LawEdit',
   props: {
   }
 }

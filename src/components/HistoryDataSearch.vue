@@ -1,12 +1,13 @@
 <template>
   <div class="container">
-    添加环保设施
+    历史数据查询
+    
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AddData',
+  name: 'HistoryDataSearch',
   props: {
   }
 }

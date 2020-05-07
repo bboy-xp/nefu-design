@@ -35,8 +35,8 @@
               <span>数据监测</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="DataSearch">历史数据查询</el-menu-item>
-              <el-menu-item index="AddData">添加环保设施</el-menu-item>
+              <el-menu-item index="CurrentDataSearch">实时数据查询</el-menu-item>
+              <el-menu-item index="HistoryDataSearch">历史数据查询</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="2">
@@ -46,7 +46,6 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="CleanSearch">查询清洗记录</el-menu-item>
-              <el-menu-item index="AddClean">新增清洗记录</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="3">
@@ -56,7 +55,6 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="ErrorSearch">异常查询</el-menu-item>
-              <el-menu-item index="ErrorReport">异常申报</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="4">
@@ -76,8 +74,9 @@
               <span>监督执法</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="LawSearch">执法记录查询</el-menu-item>
               <el-menu-item index="AddLaw">新增执法记录</el-menu-item>
+              <el-menu-item index="LawSearch">执法记录查询</el-menu-item>
+              <el-menu-item index="LawEdit">修改执法记录</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
@@ -91,30 +90,27 @@
 
 <script>
 // @ is an alias to /src
-import DataSearch from "@/components/DataSearch.vue";
-import AddData from "@/components/AddData.vue";
+import CurrentDataSearch from "@/components/CurrentDataSearch.vue";
+import HistoryDataSearch from "@/components/HistoryDataSearch.vue";
 import CleanSearch from "@/components/CleanSearch.vue";
-import AddClean from "@/components/AddClean.vue";
 import ErrorSearch from "@/components/ErrorSearch.vue";
-import ErrorReport from "@/components/ErrorReport.vue";
 import FileSearch from "@/components/FileSearch.vue";
 import AddFile from "@/components/AddFile.vue";
 import FileEdit from "@/components/FileEdit.vue";
 import LawSearch from "@/components/LawSearch.vue";
 import AddLaw from "@/components/AddLaw.vue";
+import LawEdit from "@/components/LawEdit.vue";
 import Blank from "@/components/Blank.vue";
 
 
 export default {
   name: "EPDepartment",
   components: {
-    DataSearch,
-    AddData,
+    CurrentDataSearch,
+    HistoryDataSearch,
     Blank,
     CleanSearch,
-    AddClean,
     ErrorSearch,
-    ErrorReport,
     FileSearch,
     AddFile,
     FileEdit,
@@ -129,6 +125,9 @@ export default {
   },
   methods: {
     selectMenu(index) {
+      if (this.currentView === index) {
+        return;
+      }
       console.log(index);
       this.currentView = index;
     }
@@ -180,9 +179,9 @@ export default {
   padding-right: 40px;
 }
 .avatar {
-  height: 50px;
-  width: 50px;
-  border-radius: 50px;
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
   margin-right: 10px;
 }
 .username {
