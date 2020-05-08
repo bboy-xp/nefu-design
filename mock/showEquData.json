@@ -1,0 +1,16 @@
+{
+  "error": {
+    "returnCode": 0,
+    "returnMessage": "请求成功",
+    "returnUserMessage": "请求成功"
+  },
+  "data": [{
+    "ename": "企业名称",
+    "eid": "企业id",
+    "equId": "设施id"
+  },{
+    "ename": "企业名称",
+    "eid": "企业id",
+    "equId": "设施id"
+  }]
+}

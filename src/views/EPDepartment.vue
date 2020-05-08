@@ -22,8 +22,6 @@
       <div class="nav">
         <el-menu
           class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
           @select="selectMenu"
           background-color="#545c64"
           text-color="#fff"
@@ -102,7 +100,6 @@ import AddLaw from "@/components/AddLaw.vue";
 import LawEdit from "@/components/LawEdit.vue";
 import Blank from "@/components/Blank.vue";
 
-
 export default {
   name: "EPDepartment",
   components: {
@@ -128,13 +125,13 @@ export default {
       if (this.currentView === index) {
         return;
       }
-      console.log(index);
+      // console.log(index);
       this.currentView = index;
+    },
+    exit() {
+      this.visible = false;
+      this.$router.push("/");
     }
-  },
-  exit() {
-    this.visible = false;
-    this.$router.push("/");
   }
 };
 </script>

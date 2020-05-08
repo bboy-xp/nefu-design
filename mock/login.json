@@ -1,0 +1,12 @@
+{
+  "error": {
+    "returnCode": 0,
+    "returnMessage": "请求成功",
+    "returnUserMessage": "请求成功"
+  },
+  "data": {
+    "account": "账号",
+    "role": "1",
+    "loginResult": "success"
+  }
+}

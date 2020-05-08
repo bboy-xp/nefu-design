@@ -1,0 +1,26 @@
+{
+  "error": {
+    "returnCode": 0,
+    "returnMessage": "请求成功",
+    "returnUserMessage": "请求成功"
+  },
+  "data": [{
+      "eid": "001",
+      "type": "类型",
+      "name": "餐饮1",
+      "oamCompany": "A运维",
+      "level": "A",
+      "equNum": "2",
+      "area": "黑龙江省"
+    },
+    {
+      "eid": "002",
+      "type": "类型2",
+      "name": "餐饮2",
+      "oamCompany": "B运维",
+      "level": "B",
+      "equNum": "3",
+      "area": "黑龙江省"
+    }
+  ]
+}

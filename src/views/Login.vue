@@ -5,11 +5,11 @@
       <div class="input-container">
         <div class="input-item">
           <span class="key-text">用户名</span>
-          <input v-model="username" type="text" class="input">
+          <input v-model="username" type="text" class="input" />
         </div>
         <div class="input-item">
           <span class="key-text">密码</span>
-          <input v-model="password" type="password" class="input">
+          <input v-model="password" type="password" class="input" />
         </div>
       </div>
       <el-button @click="submit" type="primary" class="submit-btn">登录</el-button>
@@ -25,13 +25,33 @@ export default {
   components: {},
   data() {
     return {
-      uername: "",
-      password: "",
-    }
+      username: "",
+      password: ""
+    };
   },
   methods: {
     submit() {
-      console.log(this.username,this.password);
+      // console.log(this.username,this.password);
+      const reqData = {
+        account: this.username,
+        password: this.password
+      }
+      if (this.username === "" || this.password === "") {
+        this.$message.error('用户名和密码不能为空');
+        return;
+      }
+      this.$axios.post("/basic/login", reqData).then(res => {
+        console.log(res);
+        if (res.data.data.loginResult === "success") {
+          if (res.data.data.role === "0") {
+            this.$router.push("/e-department");
+          }else if (res.data.data.role === "1") {
+            this.$router.push("/ep-department");
+          }
+        }else {
+          this.$message.error('登录失败，请检查用户名和密码');
+        }
+      })
     }
   }
 };

@@ -1,0 +1,27 @@
+{
+  "error": {
+    "returnCode": 0,
+    "returnMessage": "请求成功",
+    "returnUserMessage": "请求成功"
+  },
+  "data": [{
+    "environmentalId": "环保人员id",
+    "recordId": "记录编号",
+    "ename": "被监督企业名称",
+    "eid": "被监督企业id",
+    "envName": "执法部门名称",
+    "time": "执法时间",
+    "lawEnforcementResult": "执法结果"
+  }, {
+    "environmentalId": "环保人员id",
+    "recordId": "记录编号",
+    "ename": "被监督企业名称",
+    "eid": "被监督企业id",
+    "envName": "执法部门名称",
+    "time": "执法时间",
+    "lawEnforcementResult": "执法结果"
+  }]
+
+
+
+}

@@ -22,8 +22,6 @@
       <div class="nav">
         <el-menu
           class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
           @select="selectMenu"
           background-color="#545c64"
           text-color="#fff"
@@ -37,7 +35,6 @@
             <el-menu-item-group>
               <el-menu-item index="CurrentDataSearch">实时数据查询</el-menu-item>
               <el-menu-item index="HistoryDataSearch">历史数据查询</el-menu-item>
-              <el-menu-item index="AddData">添加环保设施</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="2">
@@ -46,7 +43,6 @@
               <span>清洗管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="AddClean">新增清洗记录</el-menu-item>
               <el-menu-item index="CleanSearch">查询清洗记录</el-menu-item>
               <el-menu-item index="CleanAlert">待清洗设备提醒</el-menu-item>
             </el-menu-item-group>
@@ -86,8 +82,6 @@
 import Blank from "@/components/Blank.vue";
 import CurrentDataSearch from "@/components/CurrentDataSearch.vue";
 import HistoryDataSearch from "@/components/HistoryDataSearch.vue";
-import AddData from "@/components/AddData.vue";
-import AddClean from "@/components/AddClean.vue";
 import CleanSearch from "@/components/CleanSearch.vue";
 import CleanAlert from "@/components/CleanAlert.vue";
 import ErrorSearch from "@/components/ErrorSearch.vue";
@@ -102,8 +96,6 @@ export default {
     Blank,
     CurrentDataSearch,
     HistoryDataSearch,
-    AddData,
-    AddClean,
     CleanSearch,
     CleanAlert,
     ErrorSearch,
@@ -114,7 +106,10 @@ export default {
   },
   data() {
     return {
-      currentView: "Blank"
+      currentView: "Blank",
+      visible: false,
+      
+
     };
   },
   methods: {
