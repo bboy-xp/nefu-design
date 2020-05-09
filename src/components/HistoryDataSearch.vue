@@ -30,6 +30,7 @@
       <el-button class="search-btn" @click="add" type="primary">添加环保设施</el-button>
     </div>
     <div class="table-container">
+      <!-- 数据表格 -->
       <el-table :data="tableData" height="600">
         <el-table-column prop="eid" label="企业id"></el-table-column>
         <el-table-column prop="ename" label="企业名称"></el-table-column>
@@ -37,6 +38,10 @@
         <el-table-column prop="state" label="设施状态值"></el-table-column>
         <el-table-column prop="time" label="时间"></el-table-column>
       </el-table>
+      <!-- 分页 -->
+      <div class="pagination-container">
+        <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
+      </div>
     </div>
     <!-- 添加设施的模态框 -->
     <el-dialog title="添加环保设施" :visible.sync="dialogFormVisible">
@@ -107,11 +112,11 @@ export default {
         for (let i = 0; i < res.data.data.length; i++) {
           formatEid.push({
             eid: res.data.data[i].eid,
-            name: res.data.data[i].name
+            name: res.data.data[i].ename
           });
           formatAddEid.push({
             eid: res.data.data[i].eid,
-            name: res.data.data[i].name
+            name: res.data.data[i].ename
           });
         }
       }
@@ -191,5 +196,9 @@ export default {
 }
 .add-item {
   margin-bottom: 30px;
+}
+.pagination-container {
+  margin-top: 20px;
+  text-align: end;
 }
 </style>

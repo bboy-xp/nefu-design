@@ -6,27 +6,30 @@
   },
   "data": [{
     "eid": "001",
-    "type": "类型",
-    "name": "餐饮1",
+    "type": "类型1",
+    "ename": "餐饮11",
     "oamCompany": "A运维",
     "level": "A",
     "equNum": "2",
-    "area": "黑龙江省"
+    "area": "黑龙江省",
+    "password": "124124"
   },{
-    "eid": "001",
-    "type": "类型",
-    "name": "餐饮1",
+    "eid": "002",
+    "type": "类型2",
+    "ename": "餐饮12",
     "oamCompany": "A运维",
     "level": "A",
     "equNum": "2",
-    "area": "黑龙江省"
+    "area": "黑龙江省",
+    "password": "124124"
   },{
-    "eid": "001",
-    "type": "类型",
-    "name": "餐饮1",
+    "eid": "003",
+    "type": "类型3",
+    "ename": "餐饮13",
     "oamCompany": "A运维",
     "level": "A",
     "equNum": "2",
-    "area": "黑龙江省"
+    "area": "黑龙江省",
+    "password": "124124"
   }]
 }

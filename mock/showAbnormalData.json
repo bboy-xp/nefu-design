@@ -4,7 +4,7 @@
     "returnMessage": "请求成功",
     "returnUserMessage": "请求成功"
   },
-  "data": {
+  "data":[ {
     "recordId": "异常记录编号",
     "ename": "企业名称",
     "eid": "企业id",
@@ -13,5 +13,32 @@
     "isdeal": "是否处理完毕 同上",
     "createTime": "发生时间",
     "dealTime": "当未处理时为0 处理时间"
-  }
+  }, {
+    "recordId": "异常记录编号",
+    "ename": "企业名称",
+    "eid": "企业id",
+    "equId": "设施id",
+    "abnormalReason": "异常原因",
+    "isdeal": "是否处理完毕 同上",
+    "createTime": "发生时间",
+    "dealTime": "当未处理时为0 处理时间"
+  }, {
+    "recordId": "异常记录编号",
+    "ename": "企业名称",
+    "eid": "企业id",
+    "equId": "设施id",
+    "abnormalReason": "异常原因",
+    "isdeal": "是否处理完毕 同上",
+    "createTime": "发生时间",
+    "dealTime": "当未处理时为0 处理时间"
+  }, {
+    "recordId": "异常记录编号",
+    "ename": "企业名称",
+    "eid": "企业id",
+    "equId": "设施id",
+    "abnormalReason": "异常原因",
+    "isdeal": "是否处理完毕 同上",
+    "createTime": "发生时间",
+    "dealTime": "当未处理时为0 处理时间"
+  }]
 }

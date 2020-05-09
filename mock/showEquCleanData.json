@@ -5,16 +5,16 @@
     "returnUserMessage": "请求成功"
   },
   "data": [{
-    "ename": "企业名称",
-    "eid": "企业id",
-    "equId": "设施id",
-    "cleanTime": "时间",
-    "reason": "清洗原因"
+    "ename": "企业名称1",
+    "eid": "企业id1",
+    "equId": "设施id1",
+    "cleanTime": "时间1",
+    "reason": "清洗原因1"
   },{
-    "ename": "企业名称",
-    "eid": "企业id",
-    "equId": "设施id",
-    "cleanTime": "时间",
-    "reason": "清洗原因"
+    "ename": "企业名称2",
+    "eid": "企业id2",
+    "equId": "设施id2",
+    "cleanTime": "时间2",
+    "reason": "清洗原因2"
   }]
 }
