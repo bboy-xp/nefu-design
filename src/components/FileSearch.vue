@@ -2,7 +2,7 @@
   <div class="container">
     <div class="header">
       <!-- 选择企业下拉框 需要判断身份显示不同的数据 -->
-      <el-select v-model="eid" placeholder="请选择企业id">
+      <el-select v-model="eid" placeholder="请选择企业">
         <el-option v-for="item in eidArr" :key="item.name" :label="item.name" :value="item.eid"></el-option>
       </el-select>
       <!-- 查询按钮 -->
@@ -29,6 +29,7 @@
         </el-table-column>
       </el-table>
     </div>
+
     <!-- 添加操作的模态框 -->
     <el-dialog title="编辑档案" :visible.sync="addDialogFormVisible">
       <div class="edit-container">
@@ -61,6 +62,7 @@
         </div>
         <div class="edit-item">
           <div class="edit-key">地区</div>
+          <el-input v-model="addFormData.area" placeholder="请输入地区"></el-input>
         </div>
         <div class="edit-item">
           <div class="edit-key">密码</div>
@@ -73,6 +75,7 @@
         <el-button type="primary" @click="addSubmit">提 交</el-button>
       </div>
     </el-dialog>
+
     <!-- 编辑操作的模态框 -->
     <el-dialog title="编辑档案" :visible.sync="dialogFormVisible">
       <div class="edit-container">
@@ -99,7 +102,7 @@
         </div>
         <div class="edit-item">
           <div class="edit-key">环保设施数量</div>
-          <el-input v-model="formData.equNum"></el-input>
+          <el-input disabled v-model="formData.equNum"></el-input>
         </div>
         <div class="edit-item">
           <div class="edit-key">地区</div>
@@ -154,43 +157,21 @@ export default {
         {
           name: "级别A",
           value: "A"
-        },{
+        },
+        {
           name: "级别B",
           value: "B"
-        },{
+        },
+        {
           name: "级别C",
           value: "C"
-        },
+        }
       ]
     };
   },
   mounted() {
     // 请求所有的企业刘表
-    this.$axios.get("/enterprise/showAllInfo").then(res => {
-      const formatEid = [
-        {
-          name: "全部"
-        }
-      ];
-      const formatAddEid = [];
-      // 处理eid数组
-      if (res.data.data) {
-        for (let i = 0; i < res.data.data.length; i++) {
-          formatEid.push({
-            eid: res.data.data[i].eid,
-            name: res.data.data[i].ename
-          });
-          formatAddEid.push({
-            eid: res.data.data[i].eid,
-            name: res.data.data[i].ename
-          });
-        }
-        // 如果是环保部门需要先渲染全部数据
-        this.tableData = res.data.data;
-      }
-      this.addEidArr = formatAddEid;
-      this.eidArr = formatEid;
-    });
+    this.initData();
   },
   methods: {
     search() {
@@ -205,6 +186,33 @@ export default {
             this.$message.error("请求失败");
           }
         });
+    },
+    initData() {
+      this.$axios.get("/enterprise/showAllInfo").then(res => {
+        const formatEid = [
+          {
+            name: "全部"
+          }
+        ];
+        const formatAddEid = [];
+        // 处理eid数组
+        if (res.data.data) {
+          for (let i = 0; i < res.data.data.length; i++) {
+            formatEid.push({
+              eid: res.data.data[i].eid,
+              name: res.data.data[i].ename
+            });
+            formatAddEid.push({
+              eid: res.data.data[i].eid,
+              name: res.data.data[i].ename
+            });
+          }
+          // 如果是环保部门需要先渲染全部数据
+          this.tableData = res.data.data;
+        }
+        this.addEidArr = formatAddEid;
+        this.eidArr = formatEid;
+      });
     },
     add() {
       this.addDialogFormVisible = true;
@@ -227,15 +235,86 @@ export default {
         password: "",
         equNum: ""
       };
+      this.addFormData = {
+        eid: "",
+        type: "",
+        ename: "",
+        oamCompany: "",
+        level: "",
+        area: "",
+        password: ""
+      };
     },
     editSubmit() {
+      console.log(this.formData);
+
+      // 校验表单是否有空字段
+      if (
+        this.formData.eid === "" ||
+        this.formData.type === "" ||
+        this.formData.ename === "" ||
+        this.formData.oamCompany === "" ||
+        this.formData.level === "" ||
+        this.formData.area === "" ||
+        this.formData.password === "" ||
+        this.formData.equNum === ""
+      ) {
+        this.$message.error("必填字段不可为空");
+        return;
+      }
+      this.$axios.post("/enterprise/modifyInfo", this.formData).then(res => {
+        if (res.data.error.returnCode === 0 && res.data.data.result === "0") {
+            this.$message({
+              message: "修改档案成功",
+              type: "success"
+            });
+            this.reloadForm();
+            this.search();
+          } else {
+            this.$message.error("修改档案失败");
+          }
+      })
+
       this.reloadForm();
     },
     editCancle() {
       this.reloadForm();
     },
     addSubmit() {
-      this.reloadForm();
+      // console.log(this.addFormData);
+      const regex = new RegExp("^[0-9]*$");
+      // 校验表单是否有空字段
+      if (
+        this.addFormData.eid === "" ||
+        this.addFormData.type === "" ||
+        this.addFormData.ename === "" ||
+        this.addFormData.oamCompany === "" ||
+        this.addFormData.level === "" ||
+        this.addFormData.area === "" ||
+        this.addFormData.password === ""
+      ) {
+        this.$message.error("必填字段不可为空");
+        return;
+      }
+      // 企业id为纯数字
+      if (!regex.test(this.addFormData.eid)) {
+        this.$message.error("企业id为纯数字");
+        return;
+      }
+      this.$axios
+        .post("/enterprise/addEnterprise", this.addFormData)
+        .then(res => {
+          if (res.data.error.returnCode === 0) {
+            this.$message({
+              message: "添加档案成功",
+              type: "success"
+            });
+            this.reloadForm();
+            this.initData();
+          } else {
+            this.$message.error("添加档案失败");
+          }
+        });
     },
     addCancle() {
       this.reloadForm();

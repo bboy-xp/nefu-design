@@ -2,7 +2,7 @@
   <div class="container">
     <div class="header">
       <!-- 选择企业下拉框 -->
-      <el-select v-model="eid" placeholder="请选择企业id">
+      <el-select v-model="eid" placeholder="请选择企业">
         <el-option v-for="item in eidArr" :key="item.name" :label="item.name" :value="item.eid"></el-option>
       </el-select>
       <!-- 选择起止时间日期时间选择器 -->

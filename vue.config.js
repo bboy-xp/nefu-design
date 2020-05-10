@@ -64,6 +64,7 @@ const addEnterprise = require("./mock/addEnterprise.json");
 const addRecord = require("./mock/addRecord.json");
 const showRecord = require("./mock/showRecord.json");
 const modifyRecord = require("./mock/modifyRecord.json");
+const showEnvData = require("./mock/showEnvData.json")
 
 module.exports = {
   // baseUrl: '/',//根路径
@@ -71,7 +72,7 @@ module.exports = {
   assetsDir: 'assets', //静态资源输出目录（js,css,img,fonts）
   lintOnSave: false, //是否开启eslint保存检测，有效值：true || false || 'error'
   devServer: {
-    open: true, //true 启动项目后自动打开本地网页 false 不会自动打开在线页面
+    open: false, //true 启动项目后自动打开本地网页 false 不会自动打开在线页面
     host: 'localhost', //本地开发主机名用localhost或者是127.0.0.0 真机测试用0.0.0.0
     port: 8080, //默认端口号8080 
     https: false, //true: https://localhost:8081启动 false :http://localhost:8081
@@ -130,6 +131,9 @@ module.exports = {
       });
       app.post('/lawEnforcementRecord/modifyRecord', (req, res) => {
         res.json(modifyRecord);
+      });
+      app.get('/environmental/showEnvData', (req, res) => {
+        res.json(showEnvData);
       });
     },
     

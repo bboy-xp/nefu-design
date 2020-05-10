@@ -4,5 +4,7 @@
     "returnMessage": "请求成功",
     "returnUserMessage": "请求成功"
   },
-  "data": "1 插入成功"
+  "data": {
+    "result": "0"
+  }
 }

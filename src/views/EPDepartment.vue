@@ -62,8 +62,6 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="FileSearch">档案查询</el-menu-item>
-              <el-menu-item index="AddFile">档案添加</el-menu-item>
-              <el-menu-item index="FileEdit">档案修改</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="5">
@@ -72,9 +70,7 @@
               <span>监督执法</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="AddLaw">新增执法记录</el-menu-item>
               <el-menu-item index="LawSearch">执法记录查询</el-menu-item>
-              <el-menu-item index="LawEdit">修改执法记录</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
@@ -93,11 +89,7 @@ import HistoryDataSearch from "@/components/HistoryDataSearch.vue";
 import CleanSearch from "@/components/CleanSearch.vue";
 import ErrorSearch from "@/components/ErrorSearch.vue";
 import FileSearch from "@/components/FileSearch.vue";
-import AddFile from "@/components/AddFile.vue";
-import FileEdit from "@/components/FileEdit.vue";
 import LawSearch from "@/components/LawSearch.vue";
-import AddLaw from "@/components/AddLaw.vue";
-import LawEdit from "@/components/LawEdit.vue";
 import Blank from "@/components/Blank.vue";
 
 export default {
@@ -109,10 +101,7 @@ export default {
     CleanSearch,
     ErrorSearch,
     FileSearch,
-    AddFile,
-    FileEdit,
-    LawSearch,
-    AddLaw
+    LawSearch
   },
   data() {
     return {

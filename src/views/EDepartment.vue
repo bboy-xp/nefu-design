@@ -65,7 +65,6 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="FileSearch">档案查询</el-menu-item>
-              <el-menu-item index="FileEdit">档案修改</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
@@ -88,7 +87,6 @@ import ErrorSearch from "@/components/ErrorSearch.vue";
 import ErrorReport from "@/components/ErrorReport.vue";
 import ErrorAlert from "@/components/ErrorAlert.vue";
 import FileSearch from "@/components/FileSearch.vue";
-import FileEdit from "@/components/FileEdit.vue";
 
 export default {
   name: "EDepartment",
@@ -101,8 +99,7 @@ export default {
     ErrorSearch,
     ErrorReport,
     ErrorAlert,
-    FileSearch,
-    FileEdit
+    FileSearch
   },
   data() {
     return {

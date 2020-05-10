@@ -4,5 +4,7 @@
     "returnMessage": "请求成功",
     "returnUserMessage": "请求成功"
   },
-  "data": null
+  "data": {
+    "result": "0"
+  }
 }

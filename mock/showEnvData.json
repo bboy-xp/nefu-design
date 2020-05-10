@@ -1,0 +1,28 @@
+{
+  "error": {
+    "returnCode": 0,
+    "returnMessage": "请求成功",
+    "returnUserMessage": "请求成功"
+  },
+  "data": [{
+    "id": 11,
+    "environmentalId": "H11",
+    "area": "黑龙江省",
+    "name": "环保局1"
+  }, {
+    "id": 12,
+    "environmentalId": "H12",
+    "area": "黑龙江省",
+    "name": "环保局2"
+  }, {
+    "id": 13,
+    "environmentalId": "H13",
+    "area": "黑龙江省",
+    "name": "环保局3"
+  }, {
+    "id": 14,
+    "environmentalId": "H14",
+    "area": "黑龙江省",
+    "name": "环保局4"
+  }]
+}
