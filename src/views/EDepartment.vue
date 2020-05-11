@@ -101,10 +101,13 @@ export default {
   data() {
     return {
       currentView: "Blank",
-      visible: false,
-      
-
+      visible: false
     };
+  },
+  mounted() {
+    if (!localStorage.getItem("account")) {
+      this.$router.push("/");
+    }
   },
   methods: {
     selectMenu(index) {
@@ -116,6 +119,9 @@ export default {
     },
     exit() {
       this.visible = false;
+      // 清除缓存
+      localStorage.removeItem('account');
+      localStorage.removeItem('role');
       this.$router.push("/");
     }
   }

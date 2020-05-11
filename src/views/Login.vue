@@ -43,6 +43,8 @@ export default {
       this.$axios.post("/basic/login", reqData).then(res => {
         console.log(res);
         if (res.data.data.loginResult === "success") {
+          localStorage.setItem("account", this.username);
+          localStorage.setItem("role", res.data.data.role);
           if (res.data.data.role === "0") {
             this.$router.push("/e-department");
           }else if (res.data.data.role === "1") {

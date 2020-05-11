@@ -9,7 +9,7 @@
       <el-button class="search-btn" @click="search" type="primary">查询</el-button>
     </div>
     <!-- 添加档案只有环保部门能显示 -->
-    <div class="add-btn">
+    <div class="add-btn" v-if="role==='1'">
       <el-button class="search-btn" @click="add" type="primary">添加档案</el-button>
     </div>
     <div class="table-container">
@@ -24,7 +24,9 @@
         <el-table-column prop="area" label="地区"></el-table-column>
         <el-table-column label="操作" width="100">
           <template slot-scope="scope">
-            <el-button @click="handleEditClick(scope.row)" type="text">编辑</el-button>
+            <!-- 企业部门只能修改自己的档案，环保部门可以修改全部档案 -->
+            <el-button v-if="role==='0'&&account===scope.row.eid" @click="handleEditClick(scope.row)" type="text">编辑</el-button>
+            <el-button v-if="role==='1'" @click="handleEditClick(scope.row)" type="text">编辑</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -98,8 +100,10 @@
         <!-- 餐饮级别 只有环保部门能修改，需要判断 -->
         <div class="edit-item">
           <div class="edit-key">餐饮级别</div>
-          <el-input v-model="formData.level"></el-input>
+          <el-input v-if="role==='0'" disabled v-model="formData.level"></el-input>
+          <el-input v-if="role==='1'" v-model="formData.level"></el-input>
         </div>
+
         <div class="edit-item">
           <div class="edit-key">环保设施数量</div>
           <el-input disabled v-model="formData.equNum"></el-input>
@@ -128,6 +132,8 @@ export default {
   props: {},
   data() {
     return {
+      account: "",
+      role: "",
       addEidArr: [],
       eidArr: [],
       eid: "",
@@ -170,6 +176,9 @@ export default {
     };
   },
   mounted() {
+    // 获取缓存
+    this.role = localStorage.getItem("role");
+    this.account = localStorage.getItem("account");
     // 请求所有的企业刘表
     this.initData();
   },
@@ -264,16 +273,16 @@ export default {
       }
       this.$axios.post("/enterprise/modifyInfo", this.formData).then(res => {
         if (res.data.error.returnCode === 0 && res.data.data.result === "0") {
-            this.$message({
-              message: "修改档案成功",
-              type: "success"
-            });
-            this.reloadForm();
-            this.search();
-          } else {
-            this.$message.error("修改档案失败");
-          }
-      })
+          this.$message({
+            message: "修改档案成功",
+            type: "success"
+          });
+          this.reloadForm();
+          this.search();
+        } else {
+          this.$message.error("修改档案失败");
+        }
+      });
 
       this.reloadForm();
     },

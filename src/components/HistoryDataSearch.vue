@@ -103,6 +103,7 @@ export default {
     };
   },
   mounted: function() {
+    
     this.$axios.get("/enterprise/showAllInfo").then(res => {
       const formatEid = [
         {

@@ -109,6 +109,11 @@ export default {
       visible: false
     };
   },
+  mounted() {
+    if (!localStorage.getItem("account")) {
+      this.$router.push("/");
+    }
+  },
   methods: {
     selectMenu(index) {
       if (this.currentView === index) {
@@ -119,6 +124,9 @@ export default {
     },
     exit() {
       this.visible = false;
+      // 清除缓存
+      localStorage.removeItem('account');
+      localStorage.removeItem('role');
       this.$router.push("/");
     }
   }
