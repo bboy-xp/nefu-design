@@ -76,7 +76,8 @@ module.exports = {
     host: '0.0.0.0', //本地开发主机名用localhost或者是127.0.0.0 真机测试用0.0.0.0
     port: 8080, //默认端口号8080 
     https: false, //true: https://localhost:8081启动 false :http://localhost:8081
-    hotOnly: false, //热更新
+    hotOnly: false, //热更新,
+    disableHostCheck: true, // 解决域名访问 Invalid Host header
     // proxy: { //配置跨域，解决跨域问题
     //   //配置跨域
     //   '/api': { //以"/api"开头的代理到下面的target属性的值中去
