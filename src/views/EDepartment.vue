@@ -54,7 +54,6 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="ErrorSearch">异常查询</el-menu-item>
-              <el-menu-item index="ErrorReport">异常申报</el-menu-item>
               <el-menu-item index="ErrorAlert">异常报警提醒</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
@@ -84,7 +83,6 @@ import HistoryDataSearch from "@/components/HistoryDataSearch.vue";
 import CleanSearch from "@/components/CleanSearch.vue";
 import CleanAlert from "@/components/CleanAlert.vue";
 import ErrorSearch from "@/components/ErrorSearch.vue";
-import ErrorReport from "@/components/ErrorReport.vue";
 import ErrorAlert from "@/components/ErrorAlert.vue";
 import FileSearch from "@/components/FileSearch.vue";
 
@@ -97,7 +95,6 @@ export default {
     CleanSearch,
     CleanAlert,
     ErrorSearch,
-    ErrorReport,
     ErrorAlert,
     FileSearch
   },

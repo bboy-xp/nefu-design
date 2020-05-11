@@ -36,6 +36,10 @@
         <el-table-column prop="createTime" label="发生时间"></el-table-column>
         <el-table-column prop="dealTime" label="处理时间"></el-table-column>
       </el-table>
+      <!-- 分页 -->
+      <div class="pagination-container">
+        <el-pagination @current-change="currentChange" background layout="prev, pager, next" :page-count="total"></el-pagination>
+      </div>
     </div>
   </div>
 </template>
@@ -289,7 +293,10 @@ export default {
           value: 0
         }
       ],
-      tableData: []
+      tableData: [],
+      currentPage: 1,
+      pageSize: "20",
+      total: 0
     };
   },
   mounted() {
@@ -305,14 +312,22 @@ export default {
       reqData["eid"] = this.selectValue[0];
       reqData["equId"] = this.selectValue[1];
       reqData["isdeal"] = this.isdeal;
+      // 需要并将数值型的pageNo转换为字符串
+      reqData["pageNo"] = this.currentPage + "";
+      reqData["pageSize"] = this.pageSize;
 
       this.$axios.post("/abnormal/showAbnormalData", reqData).then(res => {
         if (res.data.error.returnCode === 0) {
-          this.tableData = res.data.data;
+          this.total = res.data.data.total;
+          this.tableData = res.data.data.data;
         } else {
           this.$message.error("请求失败");
         }
       });
+    },
+    currentChange(pageNumber) {
+      this.currentPage = pageNumber;
+      this.search();
     }
   }
 };
@@ -325,5 +340,9 @@ export default {
   justify-content: space-around;
   padding-top: 20px;
   padding-bottom: 30px;
+}
+.pagination-container {
+  margin-top: 20px;
+  text-align: end;
 }
 </style>

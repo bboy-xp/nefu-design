@@ -4,17 +4,22 @@
     "returnMessage": "请求成功",
     "returnUserMessage": "请求成功"
   },
-  "data":[ {
-    "ename": "企业名称",
-    "eid": "企业id",
-    "equId": "设施id",
-    "state": "设施状态值",
-    "time": "时间"
-  }, {
-    "ename": "企业名称",
-    "eid": "企业id",
-    "equId": "设施id",
-    "state": "设施状态值",
-    "time": "时间"
-  }]
+  "data":{
+    "total":10,
+    "data": [
+      {
+        "ename": "企业名称",
+        "eid": "企业id",
+        "equId": "设施id",
+        "state": "设施状态值",
+        "time": "时间"
+      }, {
+        "ename": "企业名称",
+        "eid": "企业id",
+        "equId": "设施id",
+        "state": "设施状态值",
+        "time": "时间"
+      }
+    ]
+  }
 }

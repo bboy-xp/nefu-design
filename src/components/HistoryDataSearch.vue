@@ -40,7 +40,7 @@
       </el-table>
       <!-- 分页 -->
       <div class="pagination-container">
-        <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
+        <el-pagination @current-change="currentChange" background layout="prev, pager, next" :page-count="total"></el-pagination>
       </div>
     </div>
     <!-- 添加设施的模态框 -->
@@ -96,7 +96,10 @@ export default {
       tableData: [],
       dialogFormVisible: false,
       addEid: "",
-      addEquid: ""
+      addEquid: "",
+      currentPage: 1,
+      pageSize: "20",
+      total: 0
     };
   },
   mounted: function() {
@@ -135,10 +138,15 @@ export default {
         reqData["endTime"] = this.date[1] / 1000;
       }
       reqData["isRegular"] = this.isRegular;
+      // 需要并将数值型的pageNo转换为字符串
+      reqData["pageNo"] = this.currentPage + "";
+      reqData["pageSize"] = this.pageSize;
+
 
       this.$axios.post("/equipmentFlow/showDataByEid", reqData).then(res => {
         if (res.data.error.returnCode === 0) {
-          this.tableData = res.data.data;
+          this.total = res.data.data.total;
+          this.tableData = res.data.data.data;
         } else {
           this.$message.error("请求失败");
         }
@@ -175,6 +183,10 @@ export default {
         this.addEquid = "";
         this.$message.error("请输入正确的设备id");
       }
+    },
+    currentChange(pageNumber) {
+      this.currentPage = pageNumber;
+      this.search();
     }
   }
 };
