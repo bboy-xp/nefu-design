@@ -36,11 +36,21 @@
         <el-table-column prop="ename" label="企业名称"></el-table-column>
         <el-table-column prop="equId" label="设施id"></el-table-column>
         <el-table-column prop="state" label="设施状态值"></el-table-column>
-        <el-table-column prop="time" label="时间"></el-table-column>
+        <el-table-column label="时间">
+          <template slot-scope="scope">
+            <i class="el-icon-time"></i>
+            <span style="margin-left: 10px">{{ formatDateTime(scope.row.time) }}</span>
+          </template>
+        </el-table-column>
       </el-table>
       <!-- 分页 -->
       <div class="pagination-container">
-        <el-pagination @current-change="currentChange" background layout="prev, pager, next" :page-count="total"></el-pagination>
+        <el-pagination
+          @current-change="currentChange"
+          background
+          layout="prev, pager, next"
+          :page-count="total"
+        ></el-pagination>
       </div>
     </div>
     <!-- 添加设施的模态框 -->
@@ -103,7 +113,6 @@ export default {
     };
   },
   mounted: function() {
-    
     this.$axios.get("/enterprise/showAllInfo").then(res => {
       const formatEid = [
         {
@@ -129,6 +138,21 @@ export default {
     });
   },
   methods: {
+    formatDateTime(inputTime) {
+      var date = new Date(inputTime*1000);
+      var y = date.getFullYear();
+      var m = date.getMonth() + 1;
+      m = m < 10 ? "0" + m : m;
+      var d = date.getDate();
+      d = d < 10 ? "0" + d : d;
+      var h = date.getHours();
+      h = h < 10 ? "0" + h : h;
+      var minute = date.getMinutes();
+      var second = date.getSeconds();
+      minute = minute < 10 ? "0" + minute : minute;
+      second = second < 10 ? "0" + second : second;
+      return y + "-" + m + "-" + d + " " + h + ":" + minute + ":" + second;
+    },
     search() {
       const reqData = {};
       if (this.eid) {
@@ -142,7 +166,6 @@ export default {
       // 需要并将数值型的pageNo转换为字符串
       reqData["pageNo"] = this.currentPage + "";
       reqData["pageSize"] = this.pageSize;
-
 
       this.$axios.post("/equipmentFlow/showDataByEid", reqData).then(res => {
         if (res.data.error.returnCode === 0) {

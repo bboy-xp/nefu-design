@@ -4,7 +4,12 @@
       <!-- 数据表格 -->
       <el-table :data="tableData" height="600">
         <el-table-column prop="message" label="消息内容"></el-table-column>
-        <el-table-column prop="time" label="时间"></el-table-column>
+        <el-table-column prop="time" label="时间">
+          <template slot-scope="scope">
+            <i class="el-icon-time"></i>
+            <span style="margin-left: 10px">{{ formatDateTime(scope.row.time) }}</span>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
   </div>
@@ -26,17 +31,34 @@ export default {
     this.init();
   },
   methods: {
+    formatDateTime(inputTime) {
+      var date = new Date(inputTime*1000);
+      var y = date.getFullYear();
+      var m = date.getMonth() + 1;
+      m = m < 10 ? "0" + m : m;
+      var d = date.getDate();
+      d = d < 10 ? "0" + d : d;
+      var h = date.getHours();
+      h = h < 10 ? "0" + h : h;
+      var minute = date.getMinutes();
+      var second = date.getSeconds();
+      minute = minute < 10 ? "0" + minute : minute;
+      second = second < 10 ? "0" + second : second;
+      return y + "-" + m + "-" + d + " " + h + ":" + minute + ":" + second;
+    },
     initData() {
-      this.$axios.post("/message/getMessage", {
-        eid: this.eid,
-        type: "0"
-      }).then(res => {
-        if (res.data.error.returnCode === 0) {
-          this.tableData = res.data.data;
-        } else {
-          this.$message.error("请求查询历史报警信息失败");
-        }
-      });
+      this.$axios
+        .post("/message/getMessage", {
+          eid: this.eid,
+          type: "0"
+        })
+        .then(res => {
+          if (res.data.error.returnCode === 0) {
+            this.tableData = res.data.data;
+          } else {
+            this.$message.error("请求查询历史报警信息失败");
+          }
+        });
     },
     init() {
       let url = "wss://xxx/user/" + this.eid + "/point/abnormalDataAlarm";
