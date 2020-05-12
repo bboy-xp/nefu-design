@@ -79,68 +79,68 @@ module.exports = {
     https: false, //true: https://localhost:8081启动 false :http://localhost:8081
     hotOnly: false, //热更新,
     disableHostCheck: true, // 解决域名访问 Invalid Host header
-    // proxy: { //配置跨域，解决跨域问题
-    //   //配置跨域
-    //   '/api': { //以"/api"开头的代理到下面的target属性的值中去
-    //     target: 'http://localhost:5000/api/', // api服务器的地址
-    //     ws: true, //询问是否跨域 true跨域 false 不跨域
-    //     changOrigin: true,
-    //     pathRewrite: { //路径重写 
-    //       '^/api': '' //这个意思是以api开头的，定向到哪里，如果后面还有路径的话，会自动拼接上
-    //     }
-    //   }
-    // },
-    before(app) {
-      //接口地址：http://localhost:8080/api/test
-      app.post('/basic/login', (req, res) => {
-        res.json(login);
-      });
-      app.post('/enterprise/modifyInfo', (req, res) => {
-        res.json(modifyInfo);
-      });
-      app.post('/enterprise/showInfo', (req, res) => {
-        res.json(showInfo);
-      });
-      app.post('/equipment/addEquipment', (req, res) => {
-        res.json(addEquipment);
-      });
-      app.post('/equipmentFlow/showDataByEid', (req, res) => {
-        res.json(showDataByEid);
-      });
-      app.post('/equipment/showEquData', (req, res) => {
-        res.json(showEquData);
-      });
-      app.post('/equipmentFlow/showEquCleanData', (req, res) => {
-        res.json(showEquCleanData);
-      });
-      app.post('/abnormal/dealAbnormal', (req, res) => {
-        res.json(dealAbnormal);
-      });
-      app.post('/abnormal/showAbnormalData', (req, res) => {
-        res.json(showAbnormalData);
-      });
-      app.get('/enterprise/showAllInfo', (req, res) => {
-        res.json(showAllInfo);
-      });
-      app.post('/enterprise/addEnterprise', (req, res) => {
-        res.json(addEnterprise);
-      });
-      app.post('/lawEnforcementRecord/addRecord', (req, res) => {
-        res.json(addRecord);
-      });
-      app.post('/lawEnforcementRecord/showRecord', (req, res) => {
-        res.json(showRecord);
-      });
-      app.post('/lawEnforcementRecord/modifyRecord', (req, res) => {
-        res.json(modifyRecord);
-      });
-      app.get('/environmental/showEnvData', (req, res) => {
-        res.json(showEnvData);
-      });
-      app.post('/message/getMessage', (req, res) => {
-        res.json(getMessage);
-      });
+    proxy: { //配置跨域，解决跨域问题
+      //配置跨域
+      '/api': { //以"/api"开头的代理到下面的target属性的值中去
+        target: 'http://120.26.172.72:8800/', // api服务器的地址
+        ws: true, 
+        changOrigin: true, //询问是否跨域 true跨域 false 不跨域
+        pathRewrite: { //路径重写 
+          '^/api': '' //这个意思是以api开头的，定向到哪里，如果后面还有路径的话，会自动拼接上
+        }
+      }
     },
+    // before(app) {
+    //   //接口地址：http://localhost:8080/api/test
+    //   app.post('/basic/login', (req, res) => {
+    //     res.json(login);
+    //   });
+    //   app.post('/enterprise/modifyInfo', (req, res) => {
+    //     res.json(modifyInfo);
+    //   });
+    //   app.post('/enterprise/showInfo', (req, res) => {
+    //     res.json(showInfo);
+    //   });
+    //   app.post('/equipment/addEquipment', (req, res) => {
+    //     res.json(addEquipment);
+    //   });
+    //   app.post('/equipmentFlow/showDataByEid', (req, res) => {
+    //     res.json(showDataByEid);
+    //   });
+    //   app.post('/equipment/showEquData', (req, res) => {
+    //     res.json(showEquData);
+    //   });
+    //   app.post('/equipmentFlow/showEquCleanData', (req, res) => {
+    //     res.json(showEquCleanData);
+    //   });
+    //   app.post('/abnormal/dealAbnormal', (req, res) => {
+    //     res.json(dealAbnormal);
+    //   });
+    //   app.post('/abnormal/showAbnormalData', (req, res) => {
+    //     res.json(showAbnormalData);
+    //   });
+    //   app.get('/enterprise/showAllInfo', (req, res) => {
+    //     res.json(showAllInfo);
+    //   });
+    //   app.post('/enterprise/addEnterprise', (req, res) => {
+    //     res.json(addEnterprise);
+    //   });
+    //   app.post('/lawEnforcementRecord/addRecord', (req, res) => {
+    //     res.json(addRecord);
+    //   });
+    //   app.post('/lawEnforcementRecord/showRecord', (req, res) => {
+    //     res.json(showRecord);
+    //   });
+    //   app.post('/lawEnforcementRecord/modifyRecord', (req, res) => {
+    //     res.json(modifyRecord);
+    //   });
+    //   app.get('/environmental/showEnvData', (req, res) => {
+    //     res.json(showEnvData);
+    //   });
+    //   app.post('/message/getMessage', (req, res) => {
+    //     res.json(getMessage);
+    //   });
+    // },
     
   }
 }

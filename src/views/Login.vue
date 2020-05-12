@@ -29,18 +29,25 @@ export default {
       password: ""
     };
   },
+  mounted() {
+    this.$axios.post("/api/enterprise/showInfo", {
+      eid: "001",
+    }).then(res => {
+      console.log(res.data);
+    });
+  },
   methods: {
     submit() {
       // console.log(this.username,this.password);
       const reqData = {
         account: this.username,
         password: this.password
-      }
+      };
       if (this.username === "" || this.password === "") {
-        this.$message.error('用户名和密码不能为空');
+        this.$message.error("用户名和密码不能为空");
         return;
       }
-      this.$axios.post("/basic/login", reqData).then(res => {
+      this.$axios.post("/api/basic/login", reqData).then(res => {
         console.log(res);
         if (res.data.data.loginResult === "success") {
           localStorage.setItem("account", this.username);
@@ -48,13 +55,13 @@ export default {
           localStorage.setItem("name", res.data.data.name);
           if (res.data.data.role === "0") {
             this.$router.push("/e-department");
-          }else if (res.data.data.role === "1") {
+          } else if (res.data.data.role === "1") {
             this.$router.push("/ep-department");
           }
-        }else {
-          this.$message.error('登录失败，请检查用户名和密码');
+        } else {
+          this.$message.error("登录失败，请检查用户名和密码");
         }
-      })
+      });
     }
   }
 };
