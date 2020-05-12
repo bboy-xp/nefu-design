@@ -48,7 +48,7 @@ export default {
         this.$message.error("用户名和密码不能为空");
         return;
       }
-      this.$axios.post("/api/basic/login", reqData).then(res => {
+      this.$axios.post("/basic/login", reqData).then(res => {
         console.log(res);
         if (res.data.data.loginResult === "success") {
           localStorage.setItem("account", this.username);
