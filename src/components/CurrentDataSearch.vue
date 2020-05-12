@@ -28,7 +28,7 @@ export default {
   mounted: {},
   methods: {
     init() {
-      let url = "wss://xxx/user/" + this.eid + "/point/sendUserData";
+      let url = "ws://120.26.172.72:8800/user/" + this.eid + "/point/sendUserData";
       // 创建websocket连接
       this.websock = new WebSocket(url); // 监听打开
       this.websock.onopen = this.websockOpen; // 监听关闭

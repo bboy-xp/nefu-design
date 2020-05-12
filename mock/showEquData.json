@@ -5,12 +5,11 @@
     "returnUserMessage": "请求成功"
   },
   "data": [{
-    "ename": "企业名称",
-    "eid": "企业id",
-    "equId": "设施id"
-  },{
-    "ename": "企业名称",
-    "eid": "企业id",
-    "equId": "设施id"
+    "label": "企业名称",
+    "value": "企业Id",
+    "children": [{
+      "label": "设备名称",
+      "value": "设备Id"
+    }]
   }]
 }

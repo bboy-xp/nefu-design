@@ -30,12 +30,18 @@ export default {
     };
   },
   mounted() {
-    // this.$axios.post("/equipment/addEquipment", {
-    //   eid: "009",
-    //   equId: "1,q,4,e"
-    // }).then(res => {
-    //   console.log(res.data);
-    // });
+    this.$axios
+      .post("/equipmentFlow/showDataByEid", {
+        eid: "001",
+        startTime: "1589097337",
+        endTime: "1589297337",
+        isRegular: "1",
+        pageNo: "2",
+        pageSize: "20"
+      })
+      .then(res => {
+        console.log(res.data);
+      });
   },
   methods: {
     submit() {

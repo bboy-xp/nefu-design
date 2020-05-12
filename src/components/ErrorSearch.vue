@@ -301,6 +301,13 @@ export default {
   },
   mounted() {
     // 请求获取企业与设备的关联数组
+    this.$axios.get("/equipment/showEquData").then(res => {
+      if (res.data.error.returnCode === 0) {
+        this.options = res.data.data;
+      } else {
+        this.$message.error("获取所有企业设备信息失败");
+      }
+    });
   },
   methods: {
     search() {
