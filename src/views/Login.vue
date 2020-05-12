@@ -30,11 +30,12 @@ export default {
     };
   },
   mounted() {
-    this.$axios.post("/api/enterprise/showInfo", {
-      eid: "001",
-    }).then(res => {
-      console.log(res.data);
-    });
+    // this.$axios.post("/equipment/addEquipment", {
+    //   eid: "009",
+    //   equId: "1,q,4,e"
+    // }).then(res => {
+    //   console.log(res.data);
+    // });
   },
   methods: {
     submit() {
