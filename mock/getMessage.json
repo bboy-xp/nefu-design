@@ -1,0 +1,20 @@
+{
+  "error": {
+    "returnCode": 0,
+    "returnMessage": "请求成功",
+    "returnUserMessage": "请求成功"
+  },
+  "data": [{
+    "message": "消息内容",
+    "time": "时间1"
+  }, {
+    "message": "消息内容",
+    "time": "时间2"
+  }, {
+    "message": "消息内容",
+    "time": "时间3"
+  }, {
+    "message": "消息内容",
+    "time": "时间4"
+  }]
+}

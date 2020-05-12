@@ -64,7 +64,8 @@ const addEnterprise = require("./mock/addEnterprise.json");
 const addRecord = require("./mock/addRecord.json");
 const showRecord = require("./mock/showRecord.json");
 const modifyRecord = require("./mock/modifyRecord.json");
-const showEnvData = require("./mock/showEnvData.json")
+const showEnvData = require("./mock/showEnvData.json");
+const getMessage = require("./mock/getMessage.json");
 
 module.exports = {
   // baseUrl: '/',//根路径
@@ -135,6 +136,9 @@ module.exports = {
       });
       app.get('/environmental/showEnvData', (req, res) => {
         res.json(showEnvData);
+      });
+      app.post('/message/getMessage', (req, res) => {
+        res.json(getMessage);
       });
     },
     

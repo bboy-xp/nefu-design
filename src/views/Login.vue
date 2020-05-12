@@ -45,6 +45,7 @@ export default {
         if (res.data.data.loginResult === "success") {
           localStorage.setItem("account", this.username);
           localStorage.setItem("role", res.data.data.role);
+          localStorage.setItem("name", res.data.data.name);
           if (res.data.data.role === "0") {
             this.$router.push("/e-department");
           }else if (res.data.data.role === "1") {

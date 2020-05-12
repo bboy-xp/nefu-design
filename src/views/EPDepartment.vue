@@ -14,7 +14,7 @@
             <el-button size="mini" type="text" @click="visible = false">取消</el-button>
             <el-button type="primary" size="mini" @click="exit">确定</el-button>
           </div>
-          <div class="username" slot="reference">心平心平心平</div>
+          <div class="username" slot="reference">{{name}}</div>
         </el-popover>
       </div>
     </div>
@@ -106,13 +106,15 @@ export default {
   data() {
     return {
       currentView: "Blank",
-      visible: false
+      visible: false,
+      name: ""
     };
   },
   mounted() {
     if (!localStorage.getItem("account")) {
       this.$router.push("/");
     }
+    this.name = localStorage.getItem("name");
   },
   methods: {
     selectMenu(index) {
@@ -125,8 +127,9 @@ export default {
     exit() {
       this.visible = false;
       // 清除缓存
-      localStorage.removeItem('account');
-      localStorage.removeItem('role');
+      localStorage.removeItem("account");
+      localStorage.removeItem("role");
+      localStorage.removeItem("name");
       this.$router.push("/");
     }
   }
