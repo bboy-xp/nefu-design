@@ -61,7 +61,7 @@ export default {
         });
     },
     init() {
-      let url = "wss://xxx/user/" + this.eid + "/point/abnormalDataAlarm";
+      let url = "ws://120.26.172.72:8800/user/" + this.eid + "/point/abnormalDataAlarm";
       // 创建websocket连接
       this.websock = new WebSocket(url); // 监听打开
       this.websock.onopen = this.websockOpen; // 监听关闭
@@ -80,7 +80,10 @@ export default {
     },
     websockMessage(e) {
       console.log("监听服务器发送的消息", e.data);
-      this.tableData = e.data.concat(this.tableData);
+      if (e.data !== "连接成功") {
+        // console.log(JSON.parse(e.data))
+        this.tableData = JSON.parse(e.data).concat(this.tableData);
+      }
     }
   }
 };

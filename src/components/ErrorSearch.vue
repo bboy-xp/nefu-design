@@ -33,14 +33,59 @@
         <el-table-column prop="equId" label="设施id"></el-table-column>
         <el-table-column prop="abnormalReason" label="异常原因"></el-table-column>
         <el-table-column prop="isdeal" label="是否处理完毕"></el-table-column>
-        <el-table-column prop="createTime" label="发生时间"></el-table-column>
-        <el-table-column prop="dealTime" label="处理时间"></el-table-column>
+        <el-table-column label="发生时间">
+          <template slot-scope="scope">
+            <i class="el-icon-time"></i>
+            <span style="margin-left: 10px">{{ formatDateTime(scope.row.createTime) }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="处理时间">
+          <template slot-scope="scope">
+            <i class="el-icon-time"></i>
+            <span style="margin-left: 10px">{{ formatDateTime(scope.row.dealTime) }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" width="100">
+          <template slot-scope="scope">
+            <el-button @click="handleReportClick(scope.row)" type="text">异常申报</el-button>
+          </template>
+        </el-table-column>
       </el-table>
       <!-- 分页 -->
       <div class="pagination-container">
-        <el-pagination @current-change="currentChange" background layout="prev, pager, next" :page-count="total"></el-pagination>
+        <el-pagination
+          @current-change="currentChange"
+          background
+          layout="prev, pager, next"
+          :page-count="total"
+        ></el-pagination>
       </div>
     </div>
+
+    <!-- 申报操作的模态框 -->
+    <el-dialog title="异常申报" :visible.sync="dialogFormVisible">
+      <div class="edit-container">
+        <div class="edit-item">
+          <div class="edit-key">处理时间</div>
+          <!-- 时间日期时间选择器 -->
+          <el-date-picker
+            v-model="formData.dealTime"
+            value-format="timestamp"
+            type="datetime"
+            placeholder="选择日期时间"
+          ></el-date-picker>
+        </div>
+        <div class="edit-item">
+          <div class="edit-key">异常原因</div>
+          <el-input v-model="formData.abnormalReason"></el-input>
+        </div>
+      </div>
+
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="editCancle">取 消</el-button>
+        <el-button type="primary" @click="editSubmit">提 交</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -71,7 +116,14 @@ export default {
       tableData: [],
       currentPage: 1,
       pageSize: "20",
-      total: 0
+      total: 0,
+      dialogFormVisible: false,
+      formData: {
+        dealTime: "",
+        abnormalReason: "",
+        recordId: "",
+        equId: ""
+      }
     };
   },
   mounted() {
@@ -85,6 +137,21 @@ export default {
     });
   },
   methods: {
+    formatDateTime(inputTime) {
+      var date = new Date(inputTime * 1000);
+      var y = date.getFullYear();
+      var m = date.getMonth() + 1;
+      m = m < 10 ? "0" + m : m;
+      var d = date.getDate();
+      d = d < 10 ? "0" + d : d;
+      var h = date.getHours();
+      h = h < 10 ? "0" + h : h;
+      var minute = date.getMinutes();
+      var second = date.getSeconds();
+      minute = minute < 10 ? "0" + minute : minute;
+      second = second < 10 ? "0" + second : second;
+      return y + "-" + m + "-" + d + " " + h + ":" + minute + ":" + second;
+    },
     search() {
       const reqData = {};
       if (this.date.length === 2) {
@@ -110,6 +177,41 @@ export default {
     currentChange(pageNumber) {
       this.currentPage = pageNumber;
       this.search();
+    },
+    handleReportClick(row) {
+      this.dialogFormVisible = true;
+      this.formData.recordId = row.recordId;
+      this.formData.equId = row.equId;
+    },
+    reloadForm() {
+      this.formData = {
+        dealTime: "",
+        abnormalReason: "",
+        recordId: "",
+        equId: ""
+      };
+      this.dialogFormVisible = false;
+    },
+    editCancle() {
+      this.reloadForm();
+    },
+    editSubmit() {
+      const reqData = this.formData;
+      reqData.dealTime = reqData.dealTime / 1000;
+
+      this.$axios.post("/abnormal/dealAbnormal", reqData).then(res => {
+        if (res.data.error.returnCode === 0 && res.data.data.result === "0") {
+          this.$message({
+            message: "异常申报成功",
+            type: "success"
+          });
+          this.reloadForm();
+          this.search();
+        } else {
+          reqData.dealTime = reqData.dealTime * 1000;
+          this.$message.error("异常申报失败");
+        }
+      });
     }
   }
 };
@@ -126,5 +228,17 @@ export default {
 .pagination-container {
   margin-top: 20px;
   text-align: end;
+}
+.add-btn {
+  padding-bottom: 40px;
+}
+.edit-item {
+  display: flex;
+  padding: 10px 0;
+}
+.edit-key {
+  width: 150px;
+  display: flex;
+  align-items: center;
 }
 </style>

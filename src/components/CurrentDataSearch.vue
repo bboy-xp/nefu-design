@@ -10,8 +10,6 @@
     </div>
   </div>
 </template>
-<script src="https://cdn.bootcdn.net/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
 
 <script>
 export default {
@@ -30,23 +28,14 @@ export default {
   mounted: {},
   methods: {
     init() {
-      // let url = "http://120.26.172.72:8800/user/" + this.eid + "/point/sendUserData";
-      // // 创建websocket连接
-      // this.websock = new WebSocket(url); // 监听打开
-      // this.websock.onopen = this.websockOpen; // 监听关闭
-      // this.websock.onclose = this.websockClose; //监听异常
-      // this.websock.onerror = this.websockError; //监听服务器发送的消息
-      // this.websock.onmessage = this.websockMessage;
-
-      var sockJS = new SockJS("http://localhost:8080/socket");
-      var stompClient = Stomp.over(sockJS);
-      stompClient.connect({}, function(data) {
-        //websocket订阅
-        stompClient.subscribe("/topic/sendMessageByServer", function(res) {
-          // var list = eval(res.body);
-          console.log(res)
-        });
-      });
+      let url =
+        "ws://120.26.172.72:8800/user/" + this.eid + "/point/sendUserData";
+      // 创建websocket连接
+      this.websock = new WebSocket(url); // 监听打开
+      this.websock.onopen = this.websockOpen; // 监听关闭
+      this.websock.onclose = this.websockClose; //监听异常
+      this.websock.onerror = this.websockError; //监听服务器发送的消息
+      this.websock.onmessage = this.websockMessage;
     },
     websockOpen() {
       console.log("监听打开");
@@ -59,7 +48,11 @@ export default {
     },
     websockMessage(e) {
       console.log("监听服务器发送的消息", e.data);
-      this.tableData.push(e.data);
+      if (e.data !== "连接成功") {
+        // console.log(JSON.parse(e.data))
+        this.tableData = JSON.parse(e.data);
+      }
+      // console.log(this.tableData)
     }
   }
 };
