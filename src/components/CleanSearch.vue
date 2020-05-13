@@ -32,7 +32,12 @@
         <el-table-column prop="eid" label="企业id"></el-table-column>
         <el-table-column prop="ename" label="企业名称"></el-table-column>
         <el-table-column prop="equId" label="设施id"></el-table-column>
-        <el-table-column prop="cleanTime" label="时间"></el-table-column>
+        <el-table-column label="时间">
+          <template slot-scope="scope">
+            <i class="el-icon-time"></i>
+            <span style="margin-left: 10px">{{ formatDateTime(scope.row.cleanTime) }}</span>
+          </template>
+        </el-table-column>
         <el-table-column prop="reason" label="清洗原因"></el-table-column>
       </el-table>
     </div>
@@ -102,6 +107,21 @@ export default {
     });
   },
   methods: {
+    formatDateTime(inputTime) {
+      var date = new Date(inputTime * 1000);
+      var y = date.getFullYear();
+      var m = date.getMonth() + 1;
+      m = m < 10 ? "0" + m : m;
+      var d = date.getDate();
+      d = d < 10 ? "0" + d : d;
+      var h = date.getHours();
+      h = h < 10 ? "0" + h : h;
+      var minute = date.getMinutes();
+      var second = date.getSeconds();
+      minute = minute < 10 ? "0" + minute : minute;
+      second = second < 10 ? "0" + second : second;
+      return y + "-" + m + "-" + d + " " + h + ":" + minute + ":" + second;
+    },
     handleSelectChange(value) {},
     search() {
       const reqData = {};

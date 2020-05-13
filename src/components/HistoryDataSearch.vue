@@ -57,7 +57,7 @@
     <el-dialog title="添加环保设施" :visible.sync="dialogFormVisible">
       <div class="add-container">
         <div class="add-item">
-          <el-select v-model="addEid" placeholder="请选择企业id">
+          <el-select v-model="addEid" placeholder="请选择企业">
             <el-option
               v-for="item in addEidArr"
               :key="item.name"
