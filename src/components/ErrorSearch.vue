@@ -47,7 +47,7 @@
         </el-table-column>
         <el-table-column label="操作" width="100">
           <template slot-scope="scope">
-            <el-button @click="handleReportClick(scope.row)" type="text">异常申报</el-button>
+            <el-button v-if="scope.row.isdeal==='0'" @click="handleReportClick(scope.row)" type="text">异常申报</el-button>
           </template>
         </el-table-column>
       </el-table>
